@@ -154,14 +154,6 @@ The app will be available at `http://127.0.0.1:5000`
 
 ---
 
-## Security Notes
-
-- Passwords are stored in the database — it is strongly recommended to add bcrypt password hashing before deploying to production
-- The `uploads/decrypted/` folder stores temporarily decrypted files — ensure this directory is not publicly accessible
-- Never commit your real Cloudflare secret key to the repository — use environment variables in production
-
----
-
 ## Keywords
 
 `Government Order Management` · `AES-256 Encryption` · `Role-Based Access Control` · `Secure Document Storage` · `Flask Web Application` · `Multi-Tier Administration` · `Cloudflare Turnstile` · `Encrypted File Sharing` · `Real-Time Notifications` · `E-Governance Security`
