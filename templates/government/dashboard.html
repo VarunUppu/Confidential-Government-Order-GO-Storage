@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Government Dashboard - GO Storage System{% endblock %}
+{% block content %}
+<div class="welcome-banner">
+  <div class="welcome-banner-icon">🏛️</div>
+  <div>
+    <h2>Welcome, {{ session.get('full_name', 'Government Official') }}!</h2>
+    <p>Government Administration Portal — manage orders, users, and confidential data securely.</p>
+  </div>
+</div>
+<div class="stats-grid">
+  <div class="stat-card"><div class="number">{{ active_orders }}</div><div class="label">Active Orders</div></div>
+  <div class="stat-card"><div class="number">{{ total_users }}</div><div class="label">Total Users</div></div>
+  <div class="stat-card"><div class="number">{{ total_documents }}</div><div class="label">Documents</div></div>
+  <div class="stat-card"><div class="number">{{ pending_reports }}</div><div class="label">Pending Reports</div></div>
+</div>
+<h3 style="margin-bottom:14px">Quick Access</h3>
+<div class="dashboard-grid">
+  <a href="{{ url_for('government_issue_order') }}" class="dashboard-card"><div class="icon">📜</div><h3>Issue Orders</h3><p>Create and publish official government orders</p></a>
+  <a href="{{ url_for('government_manage_users') }}" class="dashboard-card"><div class="icon">👥</div><h3>Manage Users</h3><p>View and manage user accounts</p></a>
+  <a href="{{ url_for('government_share_data') }}" class="dashboard-card"><div class="icon">📤</div><h3>Share Data</h3><p>Share sensitive information securely</p></a>
+  <a href="{{ url_for('government_view_reports') }}" class="dashboard-card"><div class="icon">📊</div><h3>View Reports</h3><p>Access system statistics and analytics</p></a>
+  <a href="{{ url_for('government_notifications') }}" class="dashboard-card"><div class="icon">🔔</div><h3>Notifications</h3><p>View incoming reports and messages</p></a>
+</div>
+<div class="card">
+  <div class="card-header"><h3>System Status</h3><span class="badge badge-success">All Operational</span></div>
+  <div class="card-body">
+    <div class="info-grid">
+      <div class="info-card"><h4>🔐 Encryption</h4><p>AES-256 encrypted storage active</p></div>
+      <div class="info-card"><h4>📋 Access Control</h4><p>Role-based multi-level access</p></div>
+      <div class="info-card" style="border-left-color:var(--green)"><h4>🔄 Real-time Sync</h4><p>Instant notifications and updates</p></div>
+    </div>
+  </div>
+</div>
+{% endblock %}

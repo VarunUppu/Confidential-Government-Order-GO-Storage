@@ -1,0 +1,136 @@
+{
+  "users": {
+    "1": {
+      "username": "Varun_Uppu",
+      "password": "25f9e794323b453885f5181f1b624d0b",
+      "email": "varun@gmail.com",
+      "full_name": "Varun",
+      "role": "government",
+      "department": "Finance",
+      "phone": "7416978259",
+      "address": "HYD",
+      "created_at": "2026-03-16T14:00:55.338122"
+    },
+    "2": {
+      "username": "Yogesh_P",
+      "password": "25f9e794323b453885f5181f1b624d0b",
+      "email": "yogesh@gmail.com",
+      "full_name": "Yogesh",
+      "role": "collector",
+      "department": "Finance",
+      "phone": "7416978259",
+      "address": "Hyd",
+      "created_at": "2026-03-16T14:18:49.163464"
+    },
+    "3": {
+      "username": "Hari",
+      "password": "25f9e794323b453885f5181f1b624d0b",
+      "email": "hari@gmail.com",
+      "full_name": "Hari",
+      "role": "localbody",
+      "department": "Finance",
+      "phone": "7416978259",
+      "address": "Hyd",
+      "created_at": "2026-03-16T14:24:33.355164"
+    }
+  },
+  "orders": {
+    "1": {
+      "title": "Quaterly Finance Review",
+      "content": "A review of the Quartely Finances will be reviewed this week",
+      "priority": "high",
+      "target_roles": ["collector", "localbody"],
+      "issued_by": "Varun_Uppu",
+      "issued_at": "2026-03-23T15:15:40.101594",
+      "status": "active"
+    }
+  },
+  "notifications": {
+    "1": {
+      "target_role": "collector",
+      "message": "New Government Order: Quaterly Finance Review",
+      "from_user": "Varun_Uppu",
+      "created_at": "2026-03-23T15:15:40.105308",
+      "read": false
+    },
+    "2": {
+      "target_role": "localbody",
+      "message": "New Government Order: Quaterly Finance Review",
+      "from_user": "Varun_Uppu",
+      "created_at": "2026-03-23T15:15:40.108568",
+      "read": false
+    },
+    "3": {
+      "target_role": "localbody",
+      "message": "New encrypted file uploaded by Collector: Annual Finance Statement.pdf",
+      "from_user": "Yogesh_P",
+      "created_at": "2026-03-23T20:16:34.281790",
+      "read": false
+    },
+    "4": {
+      "target_role": "government",
+      "message": "New report from Local Body: Monthly Progress Report",
+      "from_user": "Hari",
+      "created_at": "2026-03-24T10:20:43.138971",
+      "read": false
+    },
+    "5": {
+      "target_role": "collector",
+      "message": "New report from Local Body: Monthly Progress Report",
+      "from_user": "Hari",
+      "created_at": "2026-03-24T10:20:43.141353",
+      "read": false
+    }
+  },
+  "documents": {
+    "1": {
+      "title": "Budget Allocation 2026",
+      "content": "The budget for 2026 is allocated",
+      "shared_with": ["collector", "localbody"],
+      "uploaded_by": "Varun_Uppu",
+      "role": "government",
+      "created_at": "2026-03-23T15:22:27.134819",
+      "type": "shared_data"
+    },
+    "2": {
+      "title": "Annual Finance Statement.pdf",
+      "description": "This is the annual financial statement for telangana 2025-26",
+      "original_filename": "Annual Finance Statement.pdf",
+      "encrypted_filename": "enc_1ef99404dce30f9869ddd72f575c68c6_Annual Finance Statement.pdf",
+      "file_hash": "1ef99404dce30f9869ddd72f575c68c6",
+      "uploaded_by": "Yogesh_P",
+      "role": "collector",
+      "shared_with": ["localbody"],
+      "created_at": "2026-03-23T20:16:34.278095",
+      "type": "encrypted_file"
+    },
+    "3": {
+      "title": "Documents Recieved",
+      "content": "Recieved the document \"Annual Finance Statement.pdf\"",
+      "shared_with": ["collector"],
+      "uploaded_by": "Hari",
+      "role": "localbody",
+      "created_at": "2026-03-23T20:21:03.288265",
+      "type": "shared_data"
+    },
+    "4": {
+      "title": "Documents Recieved",
+      "content": "Documents recieved regarding the budget allocation 2026",
+      "shared_with": ["government"],
+      "uploaded_by": "Hari",
+      "role": "localbody",
+      "created_at": "2026-03-23T20:21:38.498404",
+      "type": "shared_data"
+    },
+    "5": {
+      "title": "Monthly Progress Report",
+      "content": "Monthly Progress report submission",
+      "report_type": "progress",
+      "uploaded_by": "Hari",
+      "role": "localbody",
+      "shared_with": ["government", "collector"],
+      "created_at": "2026-03-24T10:20:43.113764",
+      "type": "report"
+    }
+  }
+}

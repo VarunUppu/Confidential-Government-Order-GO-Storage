@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Upload Files - GO Storage System{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div class="page-header-content"><div class="page-header-icon">📁</div><h1>Upload &amp; Encrypt Files</h1></div>
+</div>
+<div class="grid-2">
+  <div class="card">
+    <div class="card-header"><h3>Upload New File</h3></div>
+    <div class="card-body">
+      <form method="POST" action="{{ url_for('collector_upload_file') }}" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="file">Select File <span class="required">*</span></label>
+          <div class="file-upload">
+            <div class="file-upload-icon">📁</div>
+            <input type="file" id="file" name="file" required>
+            <p>PDF, DOC, DOCX, XLS, XLSX, TXT</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="description">File Description <span class="required">*</span></label>
+          <textarea id="description" name="description" class="form-control" placeholder="Describe the contents and purpose of this file..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Share With <span class="required">*</span></label>
+          <div class="checkbox-group">
+            <label class="checkbox-item"><input type="checkbox" name="share_with" value="localbody" required><span>Local Bodies</span></label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">🔒 Encrypt &amp; Upload</button>
+      </form>
+      <div class="notice notice-blue" style="margin-top:16px">🔒 <strong>Security Note:</strong> Files are automatically encrypted with AES-256 during upload.</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3>My Uploaded Files</h3></div>
+    {% if files %}
+      {% for file in files|reverse %}{% if loop.index0 < 5 %}
+      <div style="padding:14px 20px;border-bottom:1px solid var(--border)">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div style="flex:1">
+            <p style="font-weight:600;color:var(--text-1);margin:0 0 3px">{{ file.original_filename }}</p>
+            <p style="font-size:12px;color:var(--text-3);margin:0">{{ file.original_filename.split('.')|last|upper }} · {{ file.created_at|slice(-19, -9) }}</p>
+          </div>
+          <div style="display:flex;gap:6px">
+            <span class="badge badge-success">Encrypted</span>
+            {% if 'localbody' in file.shared_with %}<span class="badge badge-info">Shared</span>{% endif %}
+          </div>
+        </div>
+      </div>
+      {% endif %}{% endfor %}
+    {% else %}<div class="empty-state" style="border:none;padding:32px"><div class="empty-state-icon">📭</div><p>No files uploaded yet</p></div>{% endif %}
+  </div>
+</div>
+{% endblock %}

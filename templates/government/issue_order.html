@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Issue Orders - GO Storage System{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div class="page-header-content"><div class="page-header-icon">📜</div><h1>Issue Government Orders</h1></div>
+</div>
+<div class="grid-2">
+  <div class="card">
+    <div class="card-header"><h3>Create New Order</h3></div>
+    <div class="card-body">
+      <form method="POST" action="{{ url_for('government_issue_order') }}">
+        <div class="form-group">
+          <label for="order_title">Order Title <span class="required">*</span></label>
+          <input type="text" id="order_title" name="order_title" class="form-control" placeholder="e.g., Quarterly Financial Review" required>
+        </div>
+        <div class="form-group">
+          <label for="order_content">Order Content <span class="required">*</span></label>
+          <textarea id="order_content" name="order_content" class="form-control" placeholder="Enter the full details of the government order..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="priority">Priority Level <span class="required">*</span></label>
+          <select id="priority" name="priority" class="form-control" required>
+            <option value="">Select Priority</option>
+            <option value="low">Low Priority</option>
+            <option value="medium">Medium Priority</option>
+            <option value="high">High Priority</option>
+            <option value="urgent">Urgent</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Target Roles <span class="required">*</span></label>
+          <div class="checkbox-group">
+            <label class="checkbox-item"><input type="checkbox" name="target_roles" value="collector"><span>Data Collectors</span></label>
+            <label class="checkbox-item"><input type="checkbox" name="target_roles" value="localbody"><span>Local Bodies</span></label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Issue Order</button>
+      </form>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3>Recent Orders</h3><span class="badge badge-info">Latest</span></div>
+    {% if orders %}
+      {% for order in orders|reverse|list %}{% if loop.index0 < 5 %}
+      <div style="padding:14px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start">
+        <div style="flex:1">
+          <p style="font-weight:600;color:var(--text-1);margin:0 0 4px">{{ order.title }}</p>
+          <p style="font-size:12px;color:var(--text-3);margin:0 0 6px">Issued by: {{ order.issued_by }}</p>
+          <div style="display:flex;gap:6px">
+            <span class="badge {% if order.priority == 'urgent' %}badge-danger{% elif order.priority == 'high' %}badge-warning{% else %}badge-primary{% endif %}">{{ order.priority|upper }}</span>
+            <span class="badge badge-success">{{ order.status|upper }}</span>
+          </div>
+        </div>
+      </div>
+      {% endif %}{% endfor %}
+    {% else %}
+      <div class="empty-state" style="border:none;padding:32px"><div class="empty-state-icon">📭</div><p>No orders issued yet</p></div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

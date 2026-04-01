@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}View Orders - GO Storage System{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div class="page-header-content"><div class="page-header-icon">📜</div><h1>Government Orders</h1></div>
+</div>
+{% if orders %}
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px">
+    {% for order in orders|reverse %}
+    <div class="card">
+      <div class="card-header">
+        <h3 style="margin:0">{{ order.title }}</h3>
+        <span class="badge {% if order.priority == 'urgent' %}badge-danger{% elif order.priority == 'high' %}badge-warning{% else %}badge-primary{% endif %}">{{ order.priority|upper }}</span>
+      </div>
+      <div class="card-body">
+        <div style="display:flex;gap:8px;margin-bottom:12px">
+          <span class="badge badge-success">{{ order.status|upper }}</span>
+        </div>
+        <p style="font-size:13px;color:var(--text-3);margin-bottom:4px">Issued by: <strong style="color:var(--text-2)">{{ order.issued_by }}</strong></p>
+        <div style="padding:12px;background:var(--bg);border-radius:var(--radius-md);margin-top:10px">
+          <p style="font-size:13px;color:var(--text-2);margin:0;line-height:1.6">{{ order.content[:200] }}{% if order.content|length > 200 %}…{% endif %}</p>
+        </div>
+      </div>
+      <div class="card-footer"><span style="font-size:12px;color:var(--text-4)">Issued: {{ order.issued_at|slice(-19, -9) }}</span></div>
+    </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="empty-state"><div class="empty-state-icon">📭</div><h3>No Orders</h3><p>No government orders assigned to you yet.</p></div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Login - GO Storage System{% endblock %}
+{% block content %}
+<div class="auth-wrapper">
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-card-header">
+        <div class="auth-card-logo">G</div>
+        <h2>Welcome back</h2>
+        <p class="auth-card-sub">Sign in to your GO Storage account</p>
+      </div>
+      <form method="POST" action="{{ url_for('login') }}">
+        <div class="form-group">
+          <label for="username">Username <span class="required">*</span></label>
+          <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" required autofocus>
+        </div>
+        <div class="form-group">
+          <label for="password">Password <span class="required">*</span></label>
+          <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
+        </div>
+
+        <!-- ✅ CHANGE 1: Turnstile widget + error message (added before submit button) -->
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <div class="cf-turnstile"
+               data-sitekey="0x4AAAAAACuiSnnmfsymtHLZ"
+               data-theme="auto">
+          </div>
+          {% if turnstile_error %}
+          <p style="color: #e74c3c; font-size: 0.85rem; margin-top: 0.5rem;">
+            ⚠️ Human verification failed. Please try again.
+          </p>
+          {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Sign In</button>
+      </form>
+      <div class="auth-divider">Don't have an account?</div>
+      <a href="{{ url_for('signup') }}" class="btn btn-secondary btn-block">Create New Account</a>
+      <div class="auth-footer"><a href="{{ url_for('index') }}">← Return to home</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ CHANGE 2: Turnstile script (added just before endblock) -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+{% endblock %}

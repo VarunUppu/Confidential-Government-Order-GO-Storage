@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Share Data - GO Storage System{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div class="page-header-content"><div class="page-header-icon">📤</div><h1>Share Confidential Data</h1></div>
+</div>
+<div class="grid-2">
+  <div class="card">
+    <div class="card-header"><h3>Share New Data</h3></div>
+    <div class="card-body">
+      <form method="POST" action="{{ url_for('government_share_data') }}">
+        <div class="form-group">
+          <label for="title">Data Title <span class="required">*</span></label>
+          <input type="text" id="title" name="title" class="form-control" placeholder="e.g., Budget Allocation 2024" required>
+        </div>
+        <div class="form-group">
+          <label for="content">Data Content <span class="required">*</span></label>
+          <textarea id="content" name="content" class="form-control" placeholder="Enter the confidential data to share..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Share With <span class="required">*</span></label>
+          <div class="checkbox-group">
+            <label class="checkbox-item"><input type="checkbox" name="share_with" value="collector"><span>Data Collectors</span></label>
+            <label class="checkbox-item"><input type="checkbox" name="share_with" value="localbody"><span>Local Bodies</span></label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Share Data</button>
+      </form>
+    </div>
+  </div>
+  <div>
+    <div class="card">
+      <div class="card-header"><h3>Shared Documents</h3></div>
+      {% if documents %}
+        {% for doc in documents|reverse|list %}{% if loop.index0 < 5 %}
+        <div style="padding:14px 20px;border-bottom:1px solid var(--border)">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div style="flex:1"><p style="font-weight:600;color:var(--text-1);margin:0 0 3px">{{ doc.title }}</p>
+            <p style="font-size:12px;color:var(--text-3);margin:0">Shared with: {{ ', '.join(doc.shared_with)|title }} · {{ doc.created_at|slice(-19, -9) }}</p></div>
+            <span class="badge badge-info">Shared</span>
+          </div>
+        </div>
+        {% endif %}{% endfor %}
+      {% else %}<div class="empty-state" style="border:none;padding:32px"><div class="empty-state-icon">📭</div><p>No documents shared yet</p></div>{% endif %}
+    </div>
+    <div class="card" style="margin-top:16px">
+      <div class="card-header"><h3>Security</h3></div>
+      <div class="card-body">
+        <div class="info-grid" style="grid-template-columns:1fr">
+          <div class="info-card"><h4>🔒 Encrypted Transfer</h4><p>All data is encrypted during transmission</p></div>
+          <div class="info-card"><h4>👤 Access Control</h4><p>Only authorized users can access shared data</p></div>
+          <div class="info-card"><h4>📝 Audit Trail</h4><p>All access is logged and monitored</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
