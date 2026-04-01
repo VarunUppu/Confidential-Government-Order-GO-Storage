@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% block title %}View Reports - GO Storage System{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div class="page-header-content">
+    <div class="page-header-icon">📊</div>
+    <h1>System Reports &amp; Analytics</h1>
+  </div>
+</div>
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="number">{{ total_collectors }}</div>
+    <div class="label">Total Collectors</div>
+  </div>
+  <div class="stat-card">
+    <div class="number">{{ total_localbodies }}</div>
+    <div class="label">Total Local Bodies</div>
+  </div>
+  <div class="stat-card">
+    <div class="number">{{ total_documents }}</div>
+    <div class="label">Documents Shared</div>
+  </div>
+  <div class="stat-card">
+    <div class="number">{{ total_orders }}</div>
+    <div class="label">Active Orders</div>
+  </div>
+</div>
+<div class="grid-2">
+  <div class="card">
+    <div class="card-header">
+      <h3>User Distribution</h3>
+    </div>
+    <div class="card-body">
+      <div style="display:flex;justify-content:space-around;text-align:center;padding:16px 0">
+        <div>
+          <div style="font-size:2.5rem;font-weight:700;color:var(--blue)">{{ total_collectors }}</div>
+          <p style="margin:6px 0 0;font-size:13px">Collectors</p>
+        </div>
+        <div style="border-left:1px solid var(--border)"></div>
+        <div>
+          <div style="font-size:2.5rem;font-weight:700;color:var(--purple)">{{ total_localbodies }}</div>
+          <p style="margin:6px 0 0;font-size:13px">Local Bodies</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <h3>Document Statistics</h3>
+    </div>
+    <div class="card-body">
+      <div style="display:flex;justify-content:space-around;text-align:center;padding:16px 0">
+        <div>
+          <div style="font-size:2.5rem;font-weight:700;color:var(--green)">{{ total_documents }}</div>
+          <p style="margin:6px 0 0;font-size:13px">Total Documents</p>
+        </div>
+        <div style="border-left:1px solid var(--border)"></div>
+        <div>
+          <div style="font-size:2.5rem;font-weight:700;color:var(--amber)">{{ total_orders }}</div>
+          <p style="margin:6px 0 0;font-size:13px">Active Orders</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" style="margin-top: 24px;">
+  <div class="card-header">
+    <h3>📝 Local Body Reports</h3>
+    <span class="badge badge-info">{{ reports|length }} Report(s)</span>
+  </div>
+  {% if reports %}
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Type</th>
+          <th>Submitted By</th>
+          <th>Date</th>
+          <th>Content</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for report in reports|reverse|list %}
+        <tr>
+          <td><strong>{{ report.title }}</strong></td>
+          <td><span class="badge badge-info">{{ report.report_type|title }}</span></td>
+          <td>{{ report.uploaded_by }}</td>
+          <td>{{ report.created_at[:10] }}</td>
+          <td>
+            <details>
+              <summary style="cursor:pointer;color:var(--blue)">View</summary>
+              <p style="margin-top:8px;font-size:13px;color:var(--text-2)">{{ report.content }}</p>
+            </details>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty-state" style="border:none;padding:32px">
+    <div class="empty-state-icon">📭</div>
+    <p>No reports submitted yet</p>
+  </div>
+  {% endif %}
+</div>
+<div class="card">
+  <div class="card-header">
+    <h3>System Health</h3><span class="badge badge-success">All Operational</span>
+  </div>
+  <div class="card-body">
+    <div class="info-grid">
+      <div class="info-card" style="border-left-color:var(--green)">
+        <h4 style="color:var(--green)">✓ Database</h4>
+        <p>Operational</p>
+      </div>
+      <div class="info-card" style="border-left-color:var(--green)">
+        <h4 style="color:var(--green)">✓ Encryption</h4>
+        <p>Operational</p>
+      </div>
+      <div class="info-card" style="border-left-color:var(--green)">
+        <h4 style="color:var(--green)">✓ Notifications</h4>
+        <p>Operational</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <h3>Detailed Analytics</h3>
+  </div>
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Value</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Total Active Users</td>
+          <td><strong>{{ total_collectors + total_localbodies }}</strong></td>
+          <td><span class="badge badge-success">Active</span></td>
+        </tr>
+        <tr>
+          <td>Total Documents</td>
+          <td><strong>{{ total_documents }}</strong></td>
+          <td><span class="badge badge-info">Stored</span></td>
+        </tr>
+        <tr>
+          <td>Active Orders</td>
+          <td><strong>{{ total_orders }}</strong></td>
+          <td><span class="badge badge-warning">In Progress</span></td>
+        </tr>
+        <tr>
+          <td>System Uptime</td>
+          <td><strong>99.9%</strong></td>
+          <td><span class="badge badge-success">Excellent</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

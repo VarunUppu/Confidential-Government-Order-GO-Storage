@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Collector Dashboard - GO Storage System{% endblock %}
+{% block content %}
+<div class="welcome-banner">
+  <div class="welcome-banner-icon">🔍</div>
+  <div>
+    <h2>Welcome, {{ session.get('full_name', 'Data Collector') }}!</h2>
+    <p>Data Collection Portal — manage orders, encrypt files, and secure data sharing.</p>
+  </div>
+</div>
+<div class="stats-grid">
+  <div class="stat-card"><div class="number">{{ pending_orders }}</div><div class="label">Pending Orders</div></div>
+  <div class="stat-card"><div class="number">{{ files_uploaded }}</div><div class="label">Files Uploaded</div></div>
+  <div class="stat-card"><div class="number">{{ docs_shared }}</div><div class="label">Documents Shared</div></div>
+  <div class="stat-card"><div class="number">{{ new_notifications }}</div><div class="label">New Notifications</div></div>
+</div>
+<h3 style="margin-bottom:14px">Quick Access</h3>
+<div class="dashboard-grid">
+  <a href="{{ url_for('collector_view_orders') }}" class="dashboard-card">
+    <div class="icon">📜</div>
+    <h3>View Orders</h3>
+    <p>Review government orders issued to you</p>
+  </a>
+  <a href="{{ url_for('collector_upload_file') }}" class="dashboard-card">
+    <div class="icon">📁</div>
+    <h3>Upload Files</h3>
+    <p>Upload and encrypt sensitive files securely</p>
+  </a>
+  <a href="{{ url_for('collector_share_data') }}" class="dashboard-card">
+    <div class="icon">📤</div>
+    <h3>Share Data</h3>
+    <p>Share and receive confidential documents</p>
+  </a>
+  <a href="{{ url_for('collector_notifications') }}" class="dashboard-card">
+    <div class="icon">🔔</div>
+    <h3>Notifications</h3>
+    <p>View important updates and alerts</p>
+  </a>
+</div>
+<div class="card">
+  <div class="card-header">
+    <h3>Your Responsibilities</h3>
+  </div>
+  <div class="card-body">
+    <div class="info-grid">
+      <div class="info-card">
+        <h4>📋 Data Collection</h4>
+        <p>Collect and organise data as per government orders</p>
+      </div>
+      <div class="info-card">
+        <h4>🔒 Encryption</h4>
+        <p>Ensure all files are encrypted before sharing</p>
+      </div>
+      <div class="info-card">
+        <h4>📝 Reporting</h4>
+        <p>Report any security concerns immediately</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

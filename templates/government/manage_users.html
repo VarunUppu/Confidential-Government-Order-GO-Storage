@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Manage Users - GO Storage System{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div class="page-header-content"><div class="page-header-icon">👥</div><h1>Manage Users</h1></div>
+</div>
+<div class="stats-grid" style="grid-template-columns:repeat(2,1fr);max-width:400px;margin-bottom:24px">
+  <div class="stat-card"><div class="number">{{ collectors|length }}</div><div class="label">Data Collectors</div></div>
+  <div class="stat-card"><div class="number">{{ localbodies|length }}</div><div class="label">Local Bodies</div></div>
+</div>
+<div class="card">
+  <div class="card-header"><div class="card-header-left"><div class="page-header-icon">🔍</div><h3>Data Collectors</h3></div><span class="badge badge-info">{{ collectors|length }} total</span></div>
+  {% if collectors %}
+  <div class="table-container">
+    <table class="table">
+      <thead><tr><th>Name</th><th>Username</th><th>Email</th><th>Department</th><th>Status</th></tr></thead>
+      <tbody>{% for c in collectors %}<tr>
+        <td><strong>{{ c.full_name }}</strong></td>
+        <td style="color:var(--text-3)">@{{ c.username }}</td>
+        <td>{{ c.email }}</td>
+        <td>{% if c.department %}{{ c.department }}{% else %}<span style="color:var(--text-4)">—</span>{% endif %}</td>
+        <td><span class="badge badge-success">Active</span></td>
+      </tr>{% endfor %}</tbody>
+    </table>
+  </div>
+  {% else %}<div class="empty-state" style="border:none;padding:32px"><div class="empty-state-icon">👤</div><p>No data collectors registered yet</p></div>{% endif %}
+</div>
+<div class="card">
+  <div class="card-header"><div class="card-header-left"><div class="page-header-icon">🏢</div><h3>Local Bodies</h3></div><span class="badge badge-info">{{ localbodies|length }} total</span></div>
+  {% if localbodies %}
+  <div class="table-container">
+    <table class="table">
+      <thead><tr><th>Name</th><th>Username</th><th>Email</th><th>Department</th><th>Status</th></tr></thead>
+      <tbody>{% for lb in localbodies %}<tr>
+        <td><strong>{{ lb.full_name }}</strong></td>
+        <td style="color:var(--text-3)">@{{ lb.username }}</td>
+        <td>{{ lb.email }}</td>
+        <td>{% if lb.department %}{{ lb.department }}{% else %}<span style="color:var(--text-4)">—</span>{% endif %}</td>
+        <td><span class="badge badge-success">Active</span></td>
+      </tr>{% endfor %}</tbody>
+    </table>
+  </div>
+  {% else %}<div class="empty-state" style="border:none;padding:32px"><div class="empty-state-icon">🏢</div><p>No local bodies registered yet</p></div>{% endif %}
+</div>
+<div class="card">
+  <div class="card-header"><h3>Guidelines</h3></div>
+  <div class="card-body">
+    <div class="info-grid">
+      <div class="info-card"><h4>🔍 Monitor</h4><p>Monitor user activities and access logs regularly</p></div>
+      <div class="info-card"><h4>🔒 Security</h4><p>Ensure all users follow security protocols</p></div>
+      <div class="info-card"><h4>🔄 Review</h4><p>Review role assignments periodically</p></div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Notifications - GO Storage System{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div class="page-header-content"><div class="page-header-icon">🔔</div><h1>Notifications</h1></div>
+  {% if notifications %}
+  <form method="POST" action="{{ url_for('collector_mark_all_notifications_read') }}">
+    <button type="submit" class="btn btn-primary">✓ Mark All as Read</button>
+  </form>
+  {% endif %}
+</div>
+<div>
+  {% if notifications %}
+    {% for n in notifications|reverse %}
+    <div class="notification-item">
+      <div class="icon">{% if 'order' in n.message.lower() %}📜{% elif 'report' in n.message.lower() %}📋{% elif 'file' in n.message.lower() %}📁{% else %}📬{% endif %}</div>
+      <div class="content">
+        <strong>{{ n.message }}</strong>
+        <p>From: <span style="color:var(--blue)">{{ n.from_user }}</span></p>
+        <div class="time">{{ n.created_at[:10] }}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+        <span class="badge {% if n.read %}badge-secondary{% else %}badge-info{% endif %}">
+          {% if n.read %}Read{% else %}New{% endif %}
+        </span>
+        {% if not n.read %}
+        <form method="POST" action="{{ url_for('collector_mark_notification_read', notif_id=n['id']) }}">
+          <button type="submit" class="btn btn-primary" style="font-size:11px;padding:4px 10px;">✓ Mark as Read</button>
+        </form>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  {% else %}
+    <div class="empty-state"><div class="empty-state-icon">📭</div><h3>No Notifications</h3><p>You're all caught up! Check back later.</p></div>
+  {% endif %}
+</div>
+{% endblock %}

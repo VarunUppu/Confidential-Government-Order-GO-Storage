@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Home - GO Storage System{% endblock %}
+{% block content %}
+<div class="hero-section">
+  <div class="hero-badge"><div class="hero-badge-dot"></div>Secure &amp; Encrypted</div>
+  <h1>Government Order Storage System</h1>
+  <p>Advanced encryption and multi-role access control for confidential government documents</p>
+  {% if not session.get('user_id') %}
+  <div class="hero-buttons">
+    <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">Login to Your Account</a>
+    <a href="{{ url_for('signup') }}" class="btn btn-secondary btn-lg">Create New Account</a>
+  </div>
+  {% endif %}
+  <div class="hero-icons">
+    <div class="hero-icon"><div class="icon">🔐</div><span>End-to-End Encryption</span></div>
+    <div class="hero-icon"><div class="icon">👥</div><span>Multi-Role Access</span></div>
+    <div class="hero-icon"><div class="icon">📋</div><span>Order Management</span></div>
+    <div class="hero-icon"><div class="icon">📊</div><span>Analytics</span></div>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:28px">
+  <div class="card">
+    <div class="card-header"><div class="card-header-left"><div class="page-header-icon">🏛️</div><h3>Government Officials</h3></div></div>
+    <div class="card-body"><p>Issue confidential orders, manage user access, and monitor system activity with full administrative control.</p>
+    {% if not session.get('user_id') %}<a href="{{ url_for('signup') }}" class="btn btn-sm btn-primary">Register as Government</a>{% endif %}</div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-header-left"><div class="page-header-icon">🔍</div><h3>Data Collectors</h3></div></div>
+    <div class="card-body"><p>Receive government orders, upload encrypted files, and manage sensitive data with secure handling.</p>
+    {% if not session.get('user_id') %}<a href="{{ url_for('signup') }}" class="btn btn-sm btn-primary">Register as Collector</a>{% endif %}</div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-header-left"><div class="page-header-icon">🏢</div><h3>Local Bodies</h3></div></div>
+    <div class="card-body"><p>Access government orders, receive encrypted files, and submit reports. Streamlined collaboration.</p>
+    {% if not session.get('user_id') %}<a href="{{ url_for('signup') }}" class="btn btn-sm btn-primary">Register as Local Body</a>{% endif %}</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><h3>Key Features</h3></div>
+  <div class="card-body">
+    <div class="feature-grid">
+      <div class="feature-card"><div class="feature-card-icon">🔒</div><h4>AES-256 Encryption</h4><p>Military-grade encryption for all sensitive files and data transfers.</p></div>
+      <div class="feature-card"><div class="feature-card-icon">👤</div><h4>Role-Based Access</h4><p>Granular access control with role-specific permissions and restrictions.</p></div>
+      <div class="feature-card"><div class="feature-card-icon">📲</div><h4>Real-Time Notifications</h4><p>Instant notifications for orders, documents, and system activities.</p></div>
+      <div class="feature-card"><div class="feature-card-icon">📊</div><h4>Analytics Dashboard</h4><p>Comprehensive reports and analytics for system administration.</p></div>
+      <div class="feature-card"><div class="feature-card-icon">🌐</div><h4>Multi-User Platform</h4><p>Support for multiple concurrent users with secure session management.</p></div>
+      <div class="feature-card"><div class="feature-card-icon">📈</div><h4>Scalable Architecture</h4><p>Built to handle large volumes of sensitive data with high reliability.</p></div>
+    </div>
+  </div>
+</div>
+
+{% if session.get('user_id') %}
+<div class="card" style="border-left:3px solid var(--blue)">
+  <div class="card-body">
+    <h3 style="color:var(--blue);margin-bottom:6px">Welcome Back!</h3>
+    <p>Logged in as <strong>{{ session.get('full_name', session.get('username')) }}</strong> ({{ session.get('role', '').title() }}). Use the sidebar to access your features.</p>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

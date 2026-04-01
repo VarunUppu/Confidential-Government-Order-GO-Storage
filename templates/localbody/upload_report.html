@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Submit Report - GO Storage System{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div class="page-header-content"><div class="page-header-icon">📝</div><h1>Submit Report</h1></div>
+</div>
+<div class="grid-2">
+  <div class="card">
+    <div class="card-header"><h3>Submit New Report</h3></div>
+    <div class="card-body">
+      <form method="POST" action="{{ url_for('localbody_upload_report') }}">
+        <div class="form-group">
+          <label for="title">Report Title <span class="required">*</span></label>
+          <input type="text" id="title" name="title" class="form-control" placeholder="e.g., Monthly Progress Report" required>
+        </div>
+        <div class="form-group">
+          <label for="report_type">Report Type <span class="required">*</span></label>
+          <select id="report_type" name="report_type" class="form-control" required>
+            <option value="">Select Report Type</option>
+            <option value="progress">Progress Report</option>
+            <option value="compliance">Compliance Report</option>
+            <option value="financial">Financial Report</option>
+            <option value="audit">Audit Report</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="content">Report Content <span class="required">*</span></label>
+          <textarea id="content" name="content" class="form-control" placeholder="Enter the complete details of your report..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Submit Report</button>
+      </form>
+      <div class="notice notice-blue" style="margin-top:16px">📬 Reports will be automatically forwarded to government officials and collectors.</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3>My Reports</h3></div>
+    {% if reports %}
+      {% for report in reports|reverse|list %}{% if loop.index0 < 5 %}
+      <div style="padding:14px 20px;border-bottom:1px solid var(--border)">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div style="flex:1">
+            <p style="font-weight:600;color:var(--text-1);margin:0 0 3px">{{ report.title }}</p>
+            <p style="font-size:12px;color:var(--text-3);margin:0">{{ report.report_type|title }} · {{ report.created_at|slice(-19, -9) }}</p>
+          </div>
+          <span class="badge badge-success">Submitted</span>
+        </div>
+      </div>
+      {% endif %}{% endfor %}
+    {% else %}<div class="empty-state" style="border:none;padding:32px"><div class="empty-state-icon">📭</div><p>No reports submitted yet</p></div>{% endif %}
+  </div>
+</div>
+{% endblock %}

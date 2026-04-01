@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Local Body Dashboard - GO Storage System{% endblock %}
+{% block content %}
+<div class="welcome-banner">
+  <div class="welcome-banner-icon">🏢</div>
+  <div>
+    <h2>Welcome, {{ session.get('full_name', 'Local Body Official') }}!</h2>
+    <p>Local Body Portal — access orders, files, and submit reports securely.</p>
+  </div>
+</div>
+<div class="stats-grid">
+  <div class="stat-card"><div class="number">{{ active_orders }}</div><div class="label">Active Orders</div></div>
+  <div class="stat-card"><div class="number">{{ files_received }}</div><div class="label">Files Received</div></div>
+  <div class="stat-card"><div class="number">{{ reports_submitted }}</div><div class="label">Reports Submitted</div></div>
+  <div class="stat-card"><div class="number">{{ new_notifications }}</div><div class="label">New Notifications</div></div>
+</div>
+<h3 style="margin-bottom:14px">Quick Access</h3>
+<div class="dashboard-grid">
+  <a href="{{ url_for('localbody_view_orders') }}" class="dashboard-card"><div class="icon">📜</div><h3>View Orders</h3><p>Review government orders assigned to you</p></a>
+  <a href="{{ url_for('localbody_view_files') }}" class="dashboard-card"><div class="icon">📁</div><h3>View Files</h3><p>Access encrypted files shared with you</p></a>
+  <a href="{{ url_for('localbody_upload_report') }}" class="dashboard-card"><div class="icon">📝</div><h3>Upload Report</h3><p>Submit reports and documents to government</p></a>
+  <a href="{{ url_for('localbody_share_data') }}" class="dashboard-card"><div class="icon">📤</div><h3>Share Data</h3><p>Share information with other departments</p></a>
+  <a href="{{ url_for('localbody_notifications') }}" class="dashboard-card"><div class="icon">🔔</div><h3>Notifications</h3><p>View important updates and alerts</p></a>
+</div>
+<div class="card">
+  <div class="card-header"><h3>Your Responsibilities</h3></div>
+  <div class="card-body">
+    <div class="info-grid">
+      <div class="info-card"><h4>📋 Orders</h4><p>Follow all government orders and instructions</p></div>
+      <div class="info-card"><h4>📝 Reports</h4><p>Submit timely reports and updates</p></div>
+      <div class="info-card"><h4>🔒 Confidentiality</h4><p>Maintain confidentiality of shared documents</p></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
