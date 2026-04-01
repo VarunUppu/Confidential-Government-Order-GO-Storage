@@ -104,8 +104,8 @@ GO_Storage_System_Redesigned/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/go-storage-system.git
-cd go-storage-system
+git clone https://github.com/VarunUppu/Confidential-Government-Order-GO-Storage.git
+cd Confidential-Government-Order-GO-Storage
 ```
 
 ### 2. Install dependencies
