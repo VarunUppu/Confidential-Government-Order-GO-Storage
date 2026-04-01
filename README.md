@@ -148,12 +148,6 @@ The app will be available at `http://127.0.0.1:5000`
 
 ---
 
-## Screenshots
-
-> _Add screenshots of the login page, government dashboard, and dark mode here._
-
----
-
 ## Keywords
 
 `Government Order Management` · `AES-256 Encryption` · `Role-Based Access Control` · `Secure Document Storage` · `Flask Web Application` · `Multi-Tier Administration` · `Cloudflare Turnstile` · `Encrypted File Sharing` · `Real-Time Notifications` · `E-Governance Security`
