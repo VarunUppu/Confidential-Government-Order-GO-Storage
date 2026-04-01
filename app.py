@@ -9,6 +9,9 @@ import base64
 import json
 import requests as http_requests
 from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SESSION_SECRET', 'gov_secure_key_2024')
@@ -65,7 +68,7 @@ def role_required(role):
         return decorated_function
     return decorator
 
-TURNSTILE_SECRET_KEY = "0x4AAAAAACuiSnb1IPwlx_hGLAvErZHcdr0" 
+TURNSTILE_SECRET_KEY = os.getenv("Turnstile") 
 
 def verify_turnstile(token: str) -> bool:
     """Verify a Cloudflare Turnstile token server-side."""
@@ -159,7 +162,8 @@ def login():
         else:
             flash('Invalid username or password', 'error')
     
-    return render_template('login.html')
+    return render_template('login.html',
+        data_sitekey=os.getenv("Datasite_key"))
 
 @app.route('/logout')
 def logout():

@@ -22,7 +22,7 @@
         <!-- ✅ CHANGE 1: Turnstile widget + error message (added before submit button) -->
         <div class="form-group" style="margin-bottom: 1rem;">
           <div class="cf-turnstile"
-               data-sitekey="0x4AAAAAACuiSnnmfsymtHLZ"
+               data-sitekey="{{ data_sitekey }}"
                data-theme="auto">
           </div>
           {% if turnstile_error %}
