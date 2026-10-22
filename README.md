@@ -12,16 +12,16 @@ The Government Order Storage System (GO Storage System) is a secure, web-based p
 
 ## Features
 
-- 🔐 **AES-256 Encryption** — all uploaded files are encrypted at rest and during transfer
-- 👥 **Role-Based Access Control** — three distinct roles with isolated permissions and dashboards
-- 📜 **Order Management** — government officials can issue, track, and manage orders to collectors and local bodies
-- 📁 **Encrypted File Sharing** — secure file upload, encryption, and download with decrypt-on-demand
-- 📊 **Dynamic Dashboards** — live statistics per role pulled directly from the database
-- 🔔 **Real-Time Notifications** — instant alerts for orders, shared documents, and reports with mark-as-read support
-- 📝 **Report Submission** — local bodies can submit reports; government and collectors can view them
-- 🤖 **Cloudflare Turnstile** — human verification on the login page to prevent automated access
-- 🌙 **Dark Mode** — full light/dark theme toggle persisted across sessions via localStorage
-- 📱 **Responsive Design** — clean, accessible UI built with custom CSS and the Figtree font
+-  **AES-256 Encryption** — all uploaded files are encrypted at rest and during transfer
+-  **Role-Based Access Control** — three distinct roles with isolated permissions and dashboards
+-  **Order Management** — government officials can issue, track, and manage orders to collectors and local bodies
+-  **Encrypted File Sharing** — secure file upload, encryption, and download with decrypt-on-demand
+-  **Dynamic Dashboards** — live statistics per role pulled directly from the database
+-  **Real-Time Notifications** — instant alerts for orders, shared documents, and reports with mark-as-read support
+-  **Report Submission** — local bodies can submit reports; government and collectors can view them
+-  **Cloudflare Turnstile** — human verification on the login page to prevent automated access
+-  **Dark Mode** — full light/dark theme toggle persisted across sessions via localStorage
+-  **Responsive Design** — clean, accessible UI built with custom CSS and the Figtree font
 
 ---
 
